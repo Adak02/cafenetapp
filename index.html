@@ -1,0 +1,46 @@
+function copyCard() {
+      const num = document.getElementById('display-card-num').textContent;
+      navigator.clipboard.writeText(num);
+      if (tg?.HapticFeedback) tg.HapticFeedback.notificationOccurred('success');
+      alert("شماره کارت کپی شد!");
+    }
+
+    function closeModal() {
+      document.getElementById('order-modal').classList.add('hidden');
+    }
+
+    document.getElementById('order-form').onsubmit = async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = true;
+      btn.textContent = "در حال ارسال به کارشناس...";
+
+      const formData = new FormData(e.target);
+      formData.append('service_id', currentService.id);
+      formData.append('service_title', currentService.title);
+      formData.append('receipt', document.getElementById('receipt-file').files[0]);
+
+      if (tg?.initDataUnsafe?.user) {
+        formData.append('user_info', JSON.stringify(tg.initDataUnsafe.user));
+      }
+
+      try {
+        const res = await fetch('/api/submit-order', { method: 'POST', body: formData });
+        if (res.ok) {
+          alert("سفارش شما با موفقیت ثبت شد و مدارک برای کارشناس ارسال گردید.");
+          closeModal();
+          if (tg) tg.close();
+        } else {
+          alert("خطا در ارسال سفارش. لطفاً بررسی کنید.");
+        }
+      } catch (err) {
+        alert("خطای اتصال به سرور.");
+      }
+      btn.disabled = false;
+      btn.textContent = "ثبت نهایی و ارسال به کارشناس";
+    };
+
+    init();
+  </script>
+</body>
+</html>

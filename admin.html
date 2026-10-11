@@ -1,0 +1,61 @@
+function closeServiceModal() {
+      document.getElementById('service-modal').classList.add('hidden');
+    }
+
+    function addFieldRow() {
+      const container = document.getElementById('fields-container');
+      const div = document.createElement('div');
+      div.className = "flex gap-2 items-center field-row";
+      div.innerHTML = 
+        <input type="text" placeholder="عنوان فیلد (مثلاً: عکس کارت ملی)" class="f-label bg-slate-900 border border-slate-700 p-2 rounded-lg text-xs flex-1 text-white">
+        <select class="f-type bg-slate-900 border border-slate-700 p-2 rounded-lg text-xs text-white">
+          <option value="text">متن ساده</option>
+          <option value="tel">شماره تماس</option>
+          <option value="file">آپلود عکس/فایل</option>
+          <option value="password">رمز عبور</option>
+        </select>
+        <button type="button" onclick="this.parentElement.remove()" class="text-red-400 text-xs px-1">✕</button>
+      ;
+      container.appendChild(div);
+    }
+
+    function saveNewService() {
+      const title = document.getElementById('srv-title').value.trim();
+      const icon = document.getElementById('srv-icon').value.trim() || '⚡';
+      const price = Number(document.getElementById('srv-price').value) || 0;
+      const desc = document.getElementById('srv-desc').value.trim();
+
+      const fields = [];
+      document.querySelectorAll('.field-row').forEach((row, idx) => {
+        const label = row.querySelector('.f-label').value.trim();
+        const type = row.querySelector('.f-type').value;
+        if (label) {
+          fields.push({ name: field_${Date.now()}_${idx}, label, type, required: true });
+        }
+      });
+
+      if (!title) return alert("عنوان خدمت الزامی است");
+
+      appConfig.services.push({
+        id: srv_${Date.now()},
+        title, icon, price, description: desc, fields
+      });
+
+      renderServices();
+      closeServiceModal();
+    }
+
+    async function saveAllConfig() {
+      const res = await fetch('/api/config', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(appConfig)
+      });
+      if (res.ok) alert("تغییرات با موفقیت ذخیره شد!");
+      else alert("خطا در ذخیره تغییرات");
+    }
+
+    loadConfig();
+  </script>
+</body>
+</html>

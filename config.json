@@ -1,0 +1,73 @@
+{
+  "settings": {
+    "bankCards": [
+      {
+        "bankName": "بانک ملی",
+        "cardNumber": "6037997512345678",
+        "holderName": "کافی‌نت آنلاین"
+      }
+    ]
+  },
+  "services": [
+    {
+      "id": "srv_1",
+      "title": "دریافت ابلاغیه قضایی (ثنا)",
+      "icon": "⚖️",
+      "price": 35000,
+      "description": "استعلام و دانلود مستقیم فایل PDF ابلاغیه سامانه ثنا",
+      "fields": [
+        { "name": "national_code", "label": "کد ملی", "type": "text", "required": true },
+        { "name": "sana_pass", "label": "رمز شخصی ثنا (۵ رقمی)", "type": "password", "required": true },
+        { "name": "phone", "label": "شماره همراه ثنا", "type": "tel", "required": true }
+      ]
+    },
+    {
+      "id": "srv_2",
+      "title": "نوبت‌دهی تعویض پلاک",
+      "icon": "🚗",
+      "price": 95000,
+      "description": "رزرو سریع نوبت در مراکز تعویض پلاک سراسر کشور",
+      "fields": [
+        { "name": "buyer_name", "label": "نام کامل خریدار", "type": "text", "required": true },
+        { "name": "city_center", "label": "شهر و مرکز تعویض پلاک مدنظر", "type": "text", "required": true },
+        { "name": "green_leaf", "label": "تصویر برگ سبز خودرو", "type": "file", "required": true }
+      ]
+    },
+    {
+      "id": "srv_3",
+      "title": "تسویه خلافی و عوارض خودرو",
+      "icon": "🧾",
+      "price": 45000,
+      "description": "استعلام و پرداخت جرایم رانندگی و عوارض شهرداری",
+      "fields": [
+        { "name": "plate_number", "label": "پلاک خودرو یا شماره موتور", "type": "text", "required": true },
+        { "name": "owner_phone", "label": "شماره همراه مالک", "type": "tel", "required": true }
+      ]
+    },
+    {
+      "id": "srv_4",
+      "title": "ثبت‌نام تسهیلات فرزندآوری",
+      "icon": "👶",
+      "price": 150000,
+      "description": "ثبت رسمی در سامانه تسهیلات بانک مرکزی و صدور کد رهگیری",
+      "fields": [
+        { "name": "father_national", "label": "کد ملی پدر", "type": "text", "required": true },
+        { "name": "bank_choice", "label": "بانک و شعبه پیشنهادی", "type": "text", "required": true },
+        { "name": "father_id_doc", "label": "عکس شناسنامه پدر", "type": "file", "required": true },
+        { "name": "child_id_doc", "label": "عکس شناسنامه نوزاد", "type": "file", "required": true }
+      ]
+    },
+    {
+      "id": "srv_5",
+      "title": "چاپ و پرینت آنلاین اسناد",
+      "icon": "🖨️",
+      "price": 20000,
+      "description": "ارسال فایل و تحویل سریع در محل مغازه یا ارسال با پیک",
+      "fields": [
+        { "name": "print_type", "label": "نوع چاپ (رنگی/سیاه‌سفید - دورو/تک‌رو)", "type": "text", "required": true },
+        { "name": "copies", "label": "تعداد نسخه", "type": "text", "required": true },
+        { "name": "doc_file", "label": "فایل اسناد یا تصویر", "type": "file", "required": true }
+      ]
+    }
+  ]
+}
